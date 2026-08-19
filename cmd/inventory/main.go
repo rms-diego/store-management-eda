@@ -3,7 +3,7 @@ package main
 import "github.com/rms-diego/store-management-eda/pkg/app"
 
 func main() {
-	app, err := app.Init("inventories")
+	app, err := app.Init()
 	if err != nil {
 		panic(err)
 	}

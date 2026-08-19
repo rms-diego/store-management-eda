@@ -9,8 +9,8 @@ import (
 	"github.com/rms-diego/store-management-eda/pkg/config"
 )
 
-func Init(database string) (*http.Server, error) {
-	if err := config.Init(database); err != nil {
+func Init() (*http.Server, error) {
+	if err := config.Init(); err != nil {
 		return nil, err
 	}
 

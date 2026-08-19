@@ -14,7 +14,7 @@ type env struct {
 
 var Env *env
 
-func Init(databaseName string) error {
+func Init() error {
 	godotenv.Load()
 
 	switch {
@@ -27,7 +27,7 @@ func Init(databaseName string) error {
 	default:
 		Env = &env{
 			PORT:         os.Getenv("PORT"),
-			DATABASE_URL: fmt.Sprintf("%v/%v", os.Getenv("DATABASE_URL"), databaseName),
+			DATABASE_URL: fmt.Sprintf("%v/store_management", os.Getenv("DATABASE_URL")),
 		}
 
 		return nil
