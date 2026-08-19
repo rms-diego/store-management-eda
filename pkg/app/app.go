@@ -9,9 +9,9 @@ import (
 	"github.com/rms-diego/store-management-eda/pkg/config"
 )
 
-func Init() (*http.Server, error) {
+func Init() (*http.Server, *gin.Engine, error) {
 	if err := config.Init(); err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	router := gin.Default()
@@ -24,5 +24,9 @@ func Init() (*http.Server, error) {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	return app, nil
+	router.GET("/health-check", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "Server is running", "docs": "/docs"})
+	})
+
+	return app, router, nil
 }

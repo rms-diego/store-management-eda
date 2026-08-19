@@ -1,14 +1,16 @@
 package main
 
-import "github.com/rms-diego/store-management-eda/pkg/app"
+import (
+	"github.com/rms-diego/store-management-eda/pkg/app"
+)
 
 func main() {
-	app, err := app.Init()
+	a, _, err := app.Init()
 	if err != nil {
 		panic(err)
 	}
 
-	if err := app.ListenAndServe(); err != nil {
+	if err := a.ListenAndServe(); err != nil {
 		panic(err)
 	}
 }
