@@ -7,11 +7,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/rms-diego/store-management-eda/pkg/config"
+	"github.com/rms-diego/store-management-eda/pkg/database"
 )
 
 func Init() (*http.Server, *gin.Engine, error) {
 	if err := config.Init(); err != nil {
 		return nil, nil, err
+	}
+
+	if err := database.Init(config.Env.DATABASE_URL); err != nil {
+		panic(err)
 	}
 
 	router := gin.Default()
