@@ -16,7 +16,7 @@ func Init() (*http.Server, *gin.Engine, error) {
 	}
 
 	if err := database.Init(config.Env.DATABASE_URL); err != nil {
-		panic(err)
+		return nil, nil, err
 	}
 
 	router := gin.Default()
